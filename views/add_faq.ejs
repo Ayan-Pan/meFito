@@ -1,0 +1,121 @@
+<% if (adminIsActive == false) { %>
+<h1>Sign Up Please</h1>
+<% } else { %>
+<% include ./partials/adminheader %>
+<style>
+    .btn {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+        color: blueviolet;
+    }
+
+    .container {
+        border: 2px solid black;
+        background-color: rgba(0, 0, 0, 0.4);
+        width: 50%;
+        margin-top: 45px;
+        border-radius: 28px;
+        padding: 20px 50px;
+    }
+
+    .form-group input {
+        text-align: center;
+        display: block;
+        padding: 1px;
+        margin: 11px auto;
+        font-size: 20px;
+        border-radius: 8px;
+    }
+
+    .container h1 {
+        text-align: center;
+    }
+
+    .container button {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .email-pass {
+        font-size: 20px;
+        color: azure;
+    }
+
+    #emailHelp {
+        font-size: 15px;
+    }
+
+    .table {
+        width: 80%;
+    }
+</style>
+
+<div id="content" class="p-4 p-md-5 pt-5">
+    <form class="container" align="center" action="/addfaq" method="POST">
+        <label for="">
+            <h1><%= bodyText[0] %></h1>
+        </label>
+
+        <div class="form-group row mt-2">
+            <label class="email-pass">Title</label>
+            <input type="text" class=" form-control" name="title">
+
+            <label class="email-pass">Content</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="content"></textarea>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Add</button>
+    </form>
+
+    <hr>
+    <h1 align="center"><%= bodyText[1] %></h1>
+    <table class="table table-striped" border="2" align="center" cellpadding="10px">
+        <thead>
+            <tr>
+                <th scope="col">FAQ Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const iterator of faqList){ %>
+            <% if(iterator.active == true){ %>
+            <tr>
+                <td>
+                    <%= iterator.title %>
+                </td>
+                <td>
+                    <%= iterator.date %>
+                </td>
+                <td>
+                    <form action="/getfaq" method="POST">
+                        <button type="submit">Edit</button>
+                        <input type="hidden" name="faq_id" value=<%=iterator._id%>>
+                    </form>
+                    <form action="/removefaq" method="POST">
+                        <button type="submit">Remove</button>
+                        <input type="hidden" name="faq_id" value=<%=iterator._id%>>
+                    </form>
+                </td>
+            </tr>
+            <% }} %>
+        </tbody>
+    </table>
+
+
+</div>
+
+<% include ./partials/adminfooter %>
+<% } %>

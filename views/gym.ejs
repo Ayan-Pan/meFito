@@ -1,0 +1,113 @@
+<% include ./partials/header %>
+<style>
+    body,
+    html {
+        width: 100%;
+        height: auto;
+    }
+
+    .image {
+        border-radius: 20px;
+    }
+</style>
+
+<section class="banner">
+    <img src="<%= bannerImg %>" class="img-fluid banner" alt="">
+</section>
+
+<section class="container mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-primary mt-3" align="center">
+                <%= bodyTitle %>
+            </h1>
+        </div>
+
+        <% for(let i in subText){ %>
+        <% if(i%2 == 0) {%>
+        <div class="col-md-4 mt-4">
+            <img src="<%= subText[i].subImg %>" class="image img-fluid" alt="">
+        </div>
+        <div class="col-md-8 mt-4">
+            <p>
+                <%= subText[i].content %>
+            </p>
+        </div>
+        <% } else{ %>
+        <div class="col-md-8 mt-4">
+            <p>
+                <%= subText[i].content %>
+            </p>
+        </div>
+        <div class="col-md-4 mt-4">
+            <img src="<%= subText[i].subImg %>" class="image img-fluid" alt="">
+        </div>
+        <% } }%>
+
+
+        <div class="col-md-6 mt-4">
+            <h3>Our Features</h3>
+            <% for (const item of features) { %>
+            <ul>
+                <li><%= item %></li>
+            </ul>
+            <% } %>
+        </div>
+
+        <div class="col-md-6 mt-4">
+            <h3><%= tbl_hd[0] %></h3>
+            <table class="table" border="2">
+                <thead>
+                    <tr>
+                        <th scope="col">Shifts</th>
+                        <% for (const item of shifts) { %>
+                            <th scope="col"><%= item %></th>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Timings</th>
+                        <% for (const item of timings) { %>
+                            <td scope="col"><%= item %></td>
+                        <% } %>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br>
+            <h3><%= tbl_hd[1] %></h3>
+            <table class="table" border="2">
+                <thead>
+                    <tr>
+                        <th scope="col">Package</th>
+                        <% for (const item of timings) { %>
+                        <th scope="col"><%= item %></th>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Fees</th>
+                        <% for (const item of fees) { %>
+                        <td scope="col"><%= item %></td>
+                        <% } %>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<% if(Registered == false) {%>
+<div align="center">
+    <% if(signedUp == false) {%>
+    <h4>Let's <a class="disabled" data-toggle="tooltip" data-placement="top" title="Please sign up first!">Register</a> yourself.</h4>
+    <% } else { %>
+    <h4>Let's <a href="/registration">Register</a> yourself.</h4>
+    <% }}else if(Registered == true)  {%>
+    <% if(signedUp == false) {%>
+    <h4>Let's <a class="disabled" data-toggle="tooltip" data-placement="top" title="Please sign up first!">Register</a> yourself.</h4>
+</div>
+<% } } %>
+
+<% include ./partials/footer %>

@@ -1,0 +1,71 @@
+<% include ./partials/header %>
+<style>
+    body,
+    html {
+        width: 100%;
+        height: auto;
+    }
+
+    .banner {
+        width: 100%;
+        height: 40;
+    }
+
+    .accordion {
+        width: 75%;
+    }
+
+    .btn {
+        float: left;
+    }
+</style>
+
+
+<section class="banner">
+    <img src="<%= bannerImg %>" class="img-fluid banner" alt="">
+</section>
+
+<div class="accordion container mt-4 mb-4" id="accordionExample" align="center">
+    <h3 class="text-primary" align="center">
+        <%= bodyTitle %>
+    </h3>
+    <% for(let i in cards){ %>
+    <%if(i==0){%>
+    <div class="card mt-10">
+        <div class="card-header">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= i %>"
+                    aria-expanded="true" aria-controls="collapse<%= i %>">
+                    <%=cards[i].title%>
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapse<%= i %>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <%=cards[i].content%>
+            </div>
+        </div>
+    </div>
+    <%} else {%>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    data-target="#collapse<%= i %>" aria-expanded="false" aria-controls="collapse<%= i %>">
+                    <%=cards[i].title%>
+                </button>
+            </h2>
+        </div>
+        <div id="collapse<%= i %>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <%=cards[i].content%>
+            </div>
+        </div>
+    </div>
+    <% }} %>
+
+</div>
+
+
+<% include ./partials/footer %>

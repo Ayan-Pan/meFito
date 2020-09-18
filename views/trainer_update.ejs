@@ -1,0 +1,161 @@
+<% if (adminIsActive == false) { %>
+<h1>Sign Up Please</h1>
+<% } else { %>
+<% include ./partials/adminheader %>
+<style>
+    .btn {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+        color: blueviolet;
+    }
+
+    .container {
+        border: 2px solid black;
+        background-color: rgba(0, 0, 0, 0.4);
+        width: 95%;
+        margin-top: 45px;
+        border-radius: 28px;
+        padding: 20px 50px;
+    }
+
+    .form-group input {
+        text-align: center;
+        display: block;
+        padding: 1px;
+        margin: 11px auto;
+        font-size: 20px;
+        border-radius: 8px;
+    }
+
+    .container h1 {
+        text-align: center;
+    }
+
+    .container button {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .email-pass {
+        font-size: 20px;
+        color: azure;
+    }
+
+    #emailHelp {
+        font-size: 15px;
+    }
+</style>
+<div id="content" class="p-4 p-md-5 pt-5">
+    <h2 class="mt-4">
+        <%= bodyText[0] %>
+    </h2>
+    <table class="table" border="2" cellpadding="10px">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Phone No.</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Trainer Of</th>
+                <th>Shift</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <%= trainerDetails.firstName + space + trainerDetails.middleName + space + trainerDetails.lastName  %>
+                </td>
+                <td>
+                    <%= trainerDetails.email %>
+                </td>
+                <td>
+                    <%= trainerDetails.phone %>
+                </td>
+                <td>
+                    <%= trainerDetails.dob %>
+                </td>
+                <td>
+                    <%= trainerDetails.gender %>
+                </td>
+                <td>
+                    <%= trainerDetails.address %>
+                </td>
+                <td>
+                    <%= trainerDetails.trainerof %>
+                </td>
+                <td>
+                    <%= trainerDetails.shift %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <form class="container" align="center" action="/trainerupdate" method="POST">
+        <label for="">
+            <h1><%= bodyText[1] %></h1>
+        </label>
+
+        <div class="form-group row mt-2">
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[0] %></label>
+            <input type="text" class=" form-control col-sm-6 col-md-2" name="fName" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[1] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-2" name="mName" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[2] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-2" name="lName" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-1"><%= formTexts[3] %></label>
+            <input type="email" class=" form-control col-sm-6 col-md-4" name="email" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[4] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-4" name="phNo" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[5] %></label>
+            <input type="date" class="form-control col-sm-6 col-md-3" name="dob" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[6] %></label>
+            <select id="gender" class="form-control col-sm-6 col-md-3" name="gender">
+                <option value="Male"><%= formTexts[7] %></option>
+                <option value="Female"><%= formTexts[8] %></option>
+                <option value="Others"><%= formTexts[9] %></option>
+            </select>
+
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[10] %></label>
+            <textarea class="form-control col-sm-6 col-md-10" id="exampleFormControlTextarea1"
+                name="address"></textarea>
+
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[11] %></label>
+            <select id="tranierof" class="form-control col-sm-6 col-md-3" name="trainerof">
+                <option value="Gym"><%= formTexts[12] %></option>
+                <option value="Aerobics"><%= formTexts[13] %></option>
+                <option value="Yoga"><%= formTexts[14] %></option>
+            </select>
+
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[15] %></label>
+            <select id="shift" class="form-control col-sm-6 col-md-3" name="shift">
+                <option value="Morning"><%= formTexts[16] %></option>
+                <option value="Day"><%= formTexts[17] %></option>
+                <option value="Evening"><%= formTexts[18] %></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2"><%= formTexts[19] %></button>
+    </form>
+</div>
+
+<% include ./partials/adminfooter %>
+<% } %>

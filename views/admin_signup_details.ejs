@@ -1,0 +1,53 @@
+<% if (adminIsActive == false) { %>
+<h1>Sign Up Please</h1>
+<% } else { %>
+<% include ./partials/adminheader %>
+
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+
+    <h2 class="mb-4">Sign Up Details</h2>
+    <table class="table table-striped table-dark" border="2" cellpadding="10px">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Phone No.</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const iterator of userList) { %>
+            <%if(iterator._id == "5f50781727dea222bc65a09f"){ continue; %>
+            <%} else {%>
+            <tr>
+                <td>
+                    <%= iterator.firstName + space + iterator.middleName + space + iterator.lastName  %>
+                </td>
+                <td>
+                    <%= iterator.email %>
+                </td>
+                <td>
+                    <%= iterator.phone %>
+                </td>
+                <td>
+                    <%= iterator.birthDay %>
+                </td>
+                <td>
+                    <%= iterator.gender %>
+                </td>
+                <td>
+                    <%= iterator.address %>
+                </td>
+
+            </tr>
+            <% }} %>
+        </tbody>
+    </table>
+</div>
+
+
+<% include ./partials/adminfooter %>
+<% } %>

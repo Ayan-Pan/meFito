@@ -1,0 +1,188 @@
+<% if (adminIsActive == false) { %>
+<h1>Sign Up Please</h1>
+<% } else { %>
+
+<% include ./partials/adminheader %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<style>
+    .container {
+        width: 95%;
+        padding-top: 40px;
+    }
+
+    .chart {
+        width: 50%;
+    }
+</style>
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+    <h2 class="mb-4">
+        <%= title %>
+    </h2>
+    <!-- Page Content  -->
+    <div class="container border border-primary">
+        <canvas id="signChart"></canvas>
+    </div>
+    <br>
+    <div class="container border border-success">
+        <canvas id="regChart"></canvas>
+    </div>
+    <br>
+    <div class="container chart border border-danger">
+        <canvas id="courseChart"></canvas>
+    </div>
+
+    <script>
+        let myChart = document.getElementById('signChart').getContext('2d');
+        let myChart2 = document.getElementById('regChart').getContext('2d');
+        let myChart3 = document.getElementById('courseChart').getContext('2d');
+
+        var start = new Date("09/01/2020");
+        var end = Date.now();
+
+        var data = [];
+        var data2 = [<%=courseDetails %>];
+
+        var loop = new Date(start);
+        while (loop <= end) {
+            var dates = `${loop.getDate()}/${loop.getMonth() + 1}/${loop.getFullYear()}`;
+            data.push(dates);
+            var newDate = loop.setDate(loop.getDate() + 1);
+            loop = new Date(newDate);
+        }
+
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontColor = '#777';
+
+        let massPopChart = new Chart(signChart, {
+            type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: data,
+                datasets: [{
+                    label: 'No. of Sign Ups',
+                    data: [<%= signDetails[2] %>],
+                    backgroundColor: 'blue',
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Sign Up Details of Each Day',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                }
+            }
+        });
+
+        let massPopChart2 = new Chart(regChart, {
+            type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: data,
+                datasets: [{
+                    label: 'No. of Registrations',
+                    data: [<%= regDetails[2] %>],
+                    backgroundColor: 'green',
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Registation Details of Each Day',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                }
+            }
+        });
+        let massPopChart3 = new Chart(courseChart, {
+            type: 'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['gym', 'aerobics', 'yoga'],
+                datasets: [{
+                    label: 'No. of Registrations',
+                    data: data2,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Course Details',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                }
+            }
+        });
+    </script>
+</div>
+
+<% include ./partials/adminfooter %>
+<% } %>

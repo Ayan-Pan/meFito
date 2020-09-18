@@ -1,0 +1,26 @@
+<% include ./partials/signheader %>
+
+    <form class="container" align="center" action="/usersignin" method="POST">
+        <label for="">
+        <h1><%= bodyTitle %></h1>
+    </label>
+        <div class="form-group row">
+            <label class="email-pass col-sm-12 col-md-4"><%= formTexts[0] %></label>
+            <input type="email" class="form-control col-sm-12 col-md-8" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+        </div>
+        <small id="emailHelp" class="text-light"><%= formTexts[1] %></small>
+        <div class="form-group row">
+            <label class="email-pass col-sm-12 col-md-4 mt-2"><%= formTexts[2] %></label>
+            <input type="password" class="form-control col-sm-12 col-md-8" name="password" id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-primary mt-2"><%= formTexts[3] %></button>
+        <label class="text-white" for="">
+        <h4><%= formTexts[4] %></h4>
+    </label>
+        <label for="">
+        <h4><a class="text-white" href="/signup"><%= formTexts[5] %></a></h4>
+    </label>
+    </form>
+    </div>
+
+    <% include ./partials/footer %>

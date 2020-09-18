@@ -1,0 +1,51 @@
+<% if (adminIsActive == false) { %>
+<h1>Sign Up Please</h1>
+<% } else { %>
+<% include ./partials/adminheader %>
+
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+
+    <h2 class="mb-4">Registration Details</h2>
+    <table class="table table-striped table-dark" border="2" cellpadding="20px">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Password</th>
+                <th>Course</th>
+                <th>Shift</th>
+                <th>Package</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const iterator of userList) { %>
+
+            <tr>
+                <td>
+                    <%= iterator.name %>
+                </td>
+                <td>
+                    <%= iterator.email %>
+                </td>
+                <td>
+                    <%= iterator.password %>
+                </td>
+                <td>
+                    <%= iterator.course %>
+                </td>
+                <td>
+                    <%= iterator.shift %>
+                </td>
+                <td>
+                    <%= iterator.package %>
+                </td>
+
+            </tr>
+            <% }%>
+        </tbody>
+    </table>
+</div>
+
+<% include ./partials/adminfooter %>
+<% } %>

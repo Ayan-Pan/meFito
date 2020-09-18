@@ -1,0 +1,157 @@
+<% if (adminIsActive == false) { %>
+<h1>Sign Up Please</h1>
+<% } else { %>
+<% include ./partials/adminheader %>
+<style>
+    .btn {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+        color: blueviolet;
+    }
+
+    .container {
+        border: 2px solid black;
+        background-color: rgba(0, 0, 0, 0.4);
+        width: 95%;
+        margin-top: 45px;
+        border-radius: 28px;
+        padding: 20px 50px;
+    }
+
+    .form-group input {
+        text-align: center;
+        display: block;
+        padding: 1px;
+        margin: 11px auto;
+        font-size: 20px;
+        border-radius: 8px;
+    }
+
+    .container h1 {
+        text-align: center;
+    }
+
+    .container button {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .email-pass {
+        font-size: 20px;
+        color: azure;
+    }
+
+    #emailHelp {
+        font-size: 15px;
+    }
+</style>
+
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+    <h2 class="mb-4"><%= bodyText[0] %></h2>
+    <table class="table" border="2" cellpadding="20px">
+        <thead class="thead-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+                <th>Password</th>
+                <th>Phone No.</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <%= firstName %>
+                </td>
+                <td>
+                    <%= middleName %>
+                </td>
+                <td>
+                    <%= lastName %>
+                </td>
+                <td>
+                    <%= email %>
+                </td>
+                <td>
+                    <%= password %>
+                </td>
+                <td>
+                    <%= phone %>
+                </td>
+                <td>
+                    <%= dob %>
+                </td>
+                <td>
+                    <%= gender %>
+                </td>
+                <td>
+                    <%= address %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <form class="container" align="center" action="/admindetails" method="POST">
+        <label for="">
+            <h1><%= bodyText[1] %></h1>
+        </label>
+
+        <div class="form-group row mt-2">
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[0] %></label>
+            <input type="text" class=" form-control col-sm-6 col-md-2" name="fName" aria-describedby="emailHelp">
+        
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[1] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-2" name="mName" aria-describedby="emailHelp">
+        
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[2] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-2" name="lName" aria-describedby="emailHelp">
+        
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[3] %></label>
+            <input type="email" class=" form-control col-sm-6 col-md-4" name="email" aria-describedby="emailHelp">
+        
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[4] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-3" name="phNo" aria-describedby="emailHelp">
+        
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[5] %></label>
+            <input type="password" class=" form-control col-sm-6 col-md-4" name="password" aria-describedby="emailHelp">
+        
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[6] %></label>
+            <input type="password" class=" form-control col-sm-6 col-md-4" name="re_pass" aria-describedby="emailHelp">
+        
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[7] %></label>
+            <input type="date" class="form-control col-sm-6 col-md-3" name="dob" aria-describedby="emailHelp">
+        
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[8] %></label>
+            <select id="gender" class="form-control col-sm-6 col-md-3" name="gender">
+                <option value="Male"><%= formTexts[9] %></option>
+                <option value="Female"><%= formTexts[10] %></option>
+                <option value="Others"><%= formTexts[11] %></option>
+            </select>
+        
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[12] %></label>
+            <textarea class="form-control col-sm-6 col-md-10" id="exampleFormControlTextarea1" name="address"></textarea>
+        </div>
+        
+        
+        <button type="submit" class="btn btn-primary mt-2"><%= formTexts[13] %></button>
+    </form>
+</div>
+
+<% include ./partials/adminfooter %>
+<% } %>

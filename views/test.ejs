@@ -1,0 +1,46 @@
+<% include ./partials/header %>
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 122%;
+        }
+    </style>
+
+
+    <section class="banner">
+        <img src="<%= bannerImg %>" class="img-fluid banner" alt="">
+    </section>
+
+    <div class="container mt-2 mb-2 p-3">
+        <h3 class="text-primary" align="center">
+            <%= bodyText %>
+        </h3>
+
+        <div class="card-deck mt-4">
+            <% cards.forEach((element, index)=>{ %>
+                <div class="card">
+                    <h5 class="card-title" align="center">
+                        <%= element.title %>
+                    </h5>
+                    <div class="card-body" align="center">
+                        <% if(index == 2) {%>
+                            <p class="card-text">
+                                <%= element.text[0] %>
+                            </p>
+                            <p class="card-text">
+                                <%= element.text[1] %>
+                            </p>
+                            <% } else { %>
+                                <p class="card-text">
+                                    <%= element.text %>
+                                </p>
+                                <% } %>
+                    </div>
+                </div>
+                <% } )%>
+        </div>
+    </div>
+
+
+    <% include ./partials/footer %>

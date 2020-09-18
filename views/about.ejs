@@ -1,0 +1,44 @@
+<% include ./partials/header %>
+<style>
+    body,
+    html {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<section class="banner">
+    <img src="<%= bannerImg %>" class="img-fluid banner" alt="">
+</section>
+
+<section class="container mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-primary mt-3" align="center">
+                <%= bodyTitle %>
+            </h1>
+        </div>
+        <% for(let i in subText){ %>
+            <% if(i%2 == 0) {%>
+        <div class="col-md-4 mt-4">
+            <img src="<%= subText[i].subImg %>" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-8 mt-4">
+            <p>
+                <%= subText[i].content %>
+            </p>
+        </div>
+        <% } else{ %>
+            <div class="col-md-8 mt-4">
+                <p>
+                    <%= subText[i].content %>
+                </p>
+            </div>
+            <div class="col-md-4 mt-4">
+                <img src="<%= subText[i].subImg %>" class="img-fluid" alt="">
+            </div>
+        <% } }%>
+    </div>
+</section>
+
+<% include ./partials/footer %>

@@ -1,0 +1,23 @@
+<% include ./partials/registerheader %>
+    <style>
+        .container {
+            border: 2px solid black;
+            width: 75%;
+            height: 25%;
+            margin-top: 45px;
+            border-radius: 28px;
+            padding: 20px 50px;
+        }
+    </style>
+    <div class="container mb-2" align="center">
+        <h2>
+            <%= message %>
+        </h2>
+        <%if(signedUp == false){ %>
+            <a href="/usersignin">
+                <h3>Let's back to Sign In Page</h3>
+            </a>
+            <% } %>
+    </div>
+
+    <% include ./partials/footer %>

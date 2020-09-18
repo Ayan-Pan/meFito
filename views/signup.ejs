@@ -1,0 +1,66 @@
+<% include ./partials/signheader %>
+<style>
+    body,
+    html {
+        width: 100%;
+        height: auto;
+    }
+
+    #footer {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        text-align: center;
+    }
+</style>
+
+<form class="container mb-5" align="center" action="/signup" method="POST">
+    <label for="">
+        <h1><%= bodyTitle %></h1>
+    </label>
+
+    <div class="form-group row mt-2">
+        <label class="email-pass col-sm-6 col-md-2"><%= formTexts[0] %></label>
+        <input type="text" class=" form-control col-sm-6 col-md-2" name="fName" aria-describedby="emailHelp">
+
+        <label class="email-pass col-sm-6 col-md-2"><%= formTexts[1] %></label>
+        <input type="text" class="form-control col-sm-6 col-md-2" name="mName" aria-describedby="emailHelp">
+
+        <label class="email-pass col-sm-6 col-md-2"><%= formTexts[2] %></label>
+        <input type="text" class="form-control col-sm-6 col-md-2" name="lName" aria-describedby="emailHelp">
+
+        <label class="email-pass col-sm-6 col-md-2"><%= formTexts[3] %></label>
+        <input type="email" class=" form-control col-sm-6 col-md-4" name="email" aria-describedby="emailHelp">
+
+        <label class="email-pass col-sm-6 col-md-3"><%= formTexts[4] %></label>
+        <input type="text" class="form-control col-sm-6 col-md-3" name="phNo" aria-describedby="emailHelp">
+
+        <label class="email-pass col-sm-6 col-md-2"><%= formTexts[5] %></label>
+        <input type="password" class=" form-control col-sm-6 col-md-4" name="password" aria-describedby="emailHelp">
+
+        <label class="email-pass col-sm-6 col-md-2"><%= formTexts[6] %></label>
+        <input type="password" class=" form-control col-sm-6 col-md-4" name="re_pass" aria-describedby="emailHelp">
+
+        <label class="email-pass col-sm-6 col-md-2"><%= formTexts[7] %></label>
+        <input type="date" class="form-control col-sm-6 col-md-3" name="dob" aria-describedby="emailHelp">
+
+        <label class="email-pass col-sm-6 col-md-3"><%= formTexts[8] %></label>
+        <select id="gender" class="form-control col-sm-6 col-md-3" name="gender">
+            <option value="Male"><%= formTexts[9] %></option>
+            <option value="Female"><%= formTexts[10] %></option>
+            <option value="Others"><%= formTexts[11] %></option>
+        </select>
+
+        <label class="email-pass col-sm-6 col-md-2"><%= formTexts[12] %></label>
+        <textarea class="form-control col-sm-6 col-md-10" id="exampleFormControlTextarea1" name="address"></textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary mt-2"><%= formTexts[13] %></button>
+
+</form>
+
+
+<% include ./partials/footer %>

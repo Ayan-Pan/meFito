@@ -1,0 +1,181 @@
+<% if (adminIsActive == false) { %>
+<h1>Sign Up Please</h1>
+<% } else { %>
+<% include ./partials/adminheader %>
+<style>
+    .btn {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+        color: blueviolet;
+    }
+
+    .container {
+        border: 2px solid black;
+        background-color: rgba(0, 0, 0, 0.4);
+        width: 95%;
+        margin-top: 45px;
+        border-radius: 28px;
+        padding: 20px 50px;
+    }
+
+    .form-group input {
+        text-align: center;
+        display: block;
+        padding: 1px;
+        margin: 11px auto;
+        font-size: 20px;
+        border-radius: 8px;
+    }
+
+    .container h1 {
+        text-align: center;
+    }
+
+    .container button {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .email-pass {
+        font-size: 20px;
+        color: azure;
+    }
+
+    #emailHelp {
+        font-size: 15px;
+    }
+</style>
+
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+    <form class="container" align="center" action="/trainerdetails" method="POST">
+        <label for="">
+            <h1><%= bodyText[0] %></h1>
+        </label>
+
+        <div class="form-group row mt-2">
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[0] %></label>
+            <input type="text" class=" form-control col-sm-6 col-md-2" name="fName" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[1] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-2" name="mName" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[2] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-2" name="lName" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-1"><%= formTexts[3] %></label>
+            <input type="email" class=" form-control col-sm-6 col-md-4" name="email" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[4] %></label>
+            <input type="text" class="form-control col-sm-6 col-md-4" name="phNo" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[5] %></label>
+            <input type="date" class="form-control col-sm-6 col-md-3" name="dob" aria-describedby="emailHelp">
+
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[6] %></label>
+            <select id="gender" class="form-control col-sm-6 col-md-3" name="gender">
+                <option value="Male"><%= formTexts[7] %></option>
+                <option value="Female"><%= formTexts[8] %></option>
+                <option value="Others"><%= formTexts[9] %></option>
+            </select>
+
+            <label class="email-pass col-sm-6 col-md-2"><%= formTexts[10] %></label>
+            <textarea class="form-control col-sm-6 col-md-10" id="exampleFormControlTextarea1"
+                name="address"></textarea>
+
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[11] %></label>
+            <select id="tranierof" class="form-control col-sm-6 col-md-3" name="trainerof">
+                <option value="Gym"><%= formTexts[12] %></option>
+                <option value="Aerobics"><%= formTexts[13] %></option>
+                <option value="Yoga"><%= formTexts[14] %></option>
+            </select>
+
+            <label class="email-pass col-sm-6 col-md-3"><%= formTexts[15] %></label>
+            <select id="shift" class="form-control col-sm-6 col-md-3" name="shift">
+                <option value="Morning"><%= formTexts[16] %></option>
+                <option value="Day"><%= formTexts[17] %></option>
+                <option value="Evening"><%= formTexts[18] %></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2"><%= formTexts[19] %></button>
+    </form>
+
+    <hr>
+
+    <h2 class="mb-4" align="center">
+        <%= bodyText[1] %>
+    </h2>
+    <table class="table table-striped table-dark" border="2" cellpadding="10px">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Phone No.</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Address</th>
+                <th scope="col">Trainer Of</th>
+                <th scope="col">Shift</th>
+                <th scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const iterator of trainerList){ %>
+            <% if(iterator.active == true){ %>
+            <tr>
+                <td>
+                    <%= iterator.firstName + space+iterator.middleName + space + iterator.lastName  %>
+                </td>
+                <td>
+                    <%= iterator.email %>
+                </td>
+                <td>
+                    <%= iterator.phone %>
+                </td>
+                <td>
+                    <%= iterator.dob %>
+                </td>
+                <td>
+                    <%= iterator.gender %>
+                </td>
+                <td>
+                    <%= iterator.address %>
+                </td>
+                <td>
+                    <%= iterator.trainerof %>
+                </td>
+                <td>
+                    <%= iterator.shift %>
+                </td>
+                <td>
+                    <form action="/gettrainer" method="POST">
+                        <button type="submit">Edit</button>
+                        <input type="hidden" name="trainer_id" value=<%=iterator._id%>>
+                    </form>
+                    <form action="/removetrainer" method="POST">
+                        <button type="submit">Remove</button>
+                        <input type="hidden" name="trainer_id" value=<%=iterator._id%>>
+                    </form>
+                </td>
+
+            </tr>
+            <% }}%>
+        </tbody>
+    </table>
+</div>
+
+
+<% include ./partials/adminfooter %>
+<% } %>
