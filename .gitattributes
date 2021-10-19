@@ -1,2 +1,2 @@
-*.NodeJs linguist-detectable=true
+*.Js linguist-detectable=true
 *.css linguist-detectable=false
